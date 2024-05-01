@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(nvm)
+plugins=(nvm fast-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,14 +114,15 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 # zoxide
 eval "$(zoxide init zsh)"
 
-# catppuccin mocha
-source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-# zsh syntax highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # atuin
 eval "$(atuin init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/tofu tofu
